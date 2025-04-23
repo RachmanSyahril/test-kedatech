@@ -2,7 +2,7 @@
 Front End Technical Test @Keda-Tech
 
 
-First, cd to the directory:
+First after clone / download, cd to the directory:
 
 ```bash
 cd test-kedatech
