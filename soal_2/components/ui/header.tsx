@@ -34,28 +34,26 @@ export default function Header() {
       <nav className="flex flex-wrap justify-center sm:justify-end items-center space-x-4 sm:space-x-8">
         <a
           href="#about"
-          className="font-bold text-cyan-600 hover:text-blue-500"
+          className="font-bold group text-cyan-500 hover:text-cyan-600 transition duration-300"
         >
           ABOUT
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-500"></span>
         </a>
         <a
           href="#pricing"
-          className="font-bold text-cyan-600 hover:text-blue-500"
+          className="font-bold group text-cyan-500 hover:text-cyan-600 transition duration-300"
         >
           PRICING
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-500"></span>
         </a>
         <a
           href="#contact"
-          className="font-bold text-cyan-600 hover:text-blue-500"
+          className="font-bold group text-cyan-500 hover:text-cyan-600 transition duration-300"
         >
           CONTACT
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-600"></span>
         </a>
-        <Button
-          variant="outline"
-          className="border-2 border-cyan-500 text-cyan-500 hover:border-blue-500 hover:text-blue-5 text-sm sm:text-base"
-        >
-          LOGIN
-        </Button>
+        <Button variant="outline" className="pa-0">LOGIN</Button>
       </nav>
     </header>
   );
