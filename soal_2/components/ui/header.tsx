@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header
-      className={`flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 py-6 gap-4 sm:gap-0 ${
+      className={`fixed top-0 left-0  w-full z-50 transition-all duration-300 flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 gap-4 sm:gap-0 ${
         scrolled
           ? "bg-white shadow-md backdrop-blur text-gray-900"
           : "bg-transparent text-neutral-300"
@@ -32,13 +32,22 @@ export default function Header() {
         <Image src={"/logo.png"} alt="logo" width={150} height={16} />
       </motion.div>
       <nav className="flex flex-wrap justify-center sm:justify-end items-center space-x-4 sm:space-x-8">
-        <a href="#" className="font-bold text-cyan-600 hover:text-blue-500">
+        <a
+          href="#about"
+          className="font-bold text-cyan-600 hover:text-blue-500"
+        >
           ABOUT
         </a>
-        <a href="#" className="font-bold text-cyan-600 hover:text-blue-500">
+        <a
+          href="#pricing"
+          className="font-bold text-cyan-600 hover:text-blue-500"
+        >
           PRICING
         </a>
-        <a href="#" className="font-bold text-cyan-600 hover:text-blue-500">
+        <a
+          href="#contact"
+          className="font-bold text-cyan-600 hover:text-blue-500"
+        >
           CONTACT
         </a>
         <Button
