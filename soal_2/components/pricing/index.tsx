@@ -1,345 +1,176 @@
-import React from "react";
+// app/pricing/page.jsx
+"use client";
 
-const index = () => {
+import { motion } from "framer-motion";
+import {
+  CheckBadgeIcon,
+  //   ChartBarIcon,
+  //   ClockIcon,
+  //   DocumentArrowDownIcon,
+  //   SparklesIcon,
+} from "@heroicons/react/24/solid";
+
+const tiers = [
+  {
+    name: "Basic",
+    price: "Free",
+    features: [
+      "Records incoming goods",
+      "Records outgoing goods",
+      "Records profits",
+    ],
+    featured: false,
+    color: "border-blue-400",
+  },
+  {
+    name: "Business",
+    price: "Rp 299.000",
+    features: [
+      "Record incoming & outgoing goods",
+      "Record Profit",
+      "Sales analysis with Chart",
+      "Support 7x24 Hours",
+    ],
+    featured: false,
+    color: "border-purple-500",
+  },
+  {
+    name: "Entrepreneur",
+    price: "Rp 599.000",
+    features: [
+      "All Business features",
+      "Export data to Excel",
+      "AI Income prediction",
+      "Priority Support",
+      "Monthly Report",
+      "E-Commerce Integration",
+    ],
+    featured: true,
+    color: "border-[#1E2B58]",
+  },
+];
+
+export default function index() {
   return (
-    <section id="pricing" className="mt-12">
-      <h2 className="text-4xl text-gray-600 font-bold text-center mt-[-32px]">
-        Pricing
-      </h2>
+    <section
+      id="pricing"
+      className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl font-bold text-gray-500 mb-4"
+          >
+            Choose the Right Package for Your Business
+          </motion.h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Improve your business efficiency with powerful features from HomERP
+          </p>
+        </div>
 
-      <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div
-          className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
-          aria-hidden="true"
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {tiers.map((tier, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className={`relative p-8 bg-white rounded-2xl shadow-lg border-t-4 ${
+                tier.color
+              } ${tier.featured ? "transform scale-105 shadow-xl" : ""}`}
+            >
+              {tier.featured && (
+                <div className="absolute top-0 right-0 bg-[#FFA630] text-white px-4 py-1 rounded-bl-lg rounded-tr-lg">
+                  Best Value
+                </div>
+              )}
+
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  {tier.name}
+                </h3>
+                <div className="text-4xl font-bold text-gray-900">
+                  {tier.price}
+                  {tier.price !== "Free" && (
+                    <span className="text-lg font-normal">/month</span>
+                  )}
+                </div>
+              </div>
+
+              <ul className="space-y-4 mb-8">
+                {tier.features.map((feature, featIndex) => (
+                  <li key={featIndex} className="flex items-start">
+                    <CheckBadgeIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                  tier.featured
+                    ? "bg-[#1E2B58] hover:bg-[#1e2b58cb] text-white"
+                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                }`}
+              >
+                Start Now
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Feature Comparison */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-20 bg-white rounded-xl text-gray-500 p-8 shadow-lg"
         >
-          <div
-            className="mx-auto aspect-1155/678 w-[72.1875rem] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-          ></div>
-        </div>
-        <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
-          <div className="rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-3xl">
-            <h3
-              id="tier-hobby"
-              className="text-base/7 font-semibold text-indigo-600"
-            >
-              Hobby
-            </h3>
-            <p className="mt-4 flex items-baseline gap-x-2">
-              <span className="text-5xl font-semibold tracking-tight text-gray-900">
-                $29
-              </span>
-              <span className="text-base text-gray-500">/month</span>
-            </p>
-            <p className="mt-6 text-base/7 text-gray-600">
-              The perfect plan if you&#039;re just getting started with our
-              product.
-            </p>
-            <ul
-              role="list"
-              className="mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                25 products
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Up to 10,000 subscribers
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Advanced analytics
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                24-hour support response time
-              </li>
-            </ul>
-            <a
-              href="#"
-              aria-describedby="tier-hobby"
-              className="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10"
-            >
-              Get started today
-            </a>
-          </div>
+          <h3 className="text-2xl font-bold mb-8">
+            Feature Comparation
+          </h3>
 
-          <div className="relative rounded-3xl bg-gray-900 p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10">
-            <h3
-              id="tier-enterprise"
-              className="text-base/7 font-semibold text-indigo-400"
-            >
-              Enterprise
-            </h3>
-            <p className="mt-4 flex items-baseline gap-x-2">
-              <span className="text-5xl font-semibold tracking-tight text-white">
-                $99
-              </span>
-              <span className="text-base text-gray-400">/month</span>
-            </p>
-            <p className="mt-6 text-base/7 text-gray-300">
-              Dedicated support and infrastructure for your company.
-            </p>
-            <ul
-              role="list"
-              className="mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Unlimited products
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Unlimited subscribers
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Advanced analytics
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Dedicated support representative
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Marketing automations
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Custom integrations
-              </li>
-            </ul>
-            <a
-              href="#"
-              aria-describedby="tier-enterprise"
-              className="mt-8 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10"
-            >
-              Get started today
-            </a>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th className="text-left pb-4">Feature</th>
+                  <th className="text-center p-4">Basic</th>
+                  <th className="text-center p-4">Business</th>
+                  <th className="text-center p-4">Entrepreneur</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Records Incoming / Outgoing Goods", "✓", "✓", "✓"],
+                  ["Sales Chart Analysis", "✕", "✓", "✓"],
+                  ["Support 24/7", "✕", "✓", "✓"],
+                  ["Export Excel", "✕", "✕", "✓"],
+                  ["AI Prediction", "✕", "✕", "✓"],
+                ].map(([feature, ...tiers], index) => (
+                  <tr key={index} className="border-t border-gray-200">
+                    <td className="py-4 pr-8">{feature}</td>
+                    {tiers.map((value, tierIndex) => (
+                      <td key={tierIndex} className="text-center py-4 px-4">
+                        <span
+                          className={`text-xl ${
+                            value === "✓" ? "text-green-500" : "text-red-500"
+                          }`}
+                        >
+                          {value}
+                        </span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-
-          <div className="rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-3xl">
-            <h3
-              id="tier-hobby"
-              className="text-base/7 font-semibold text-indigo-600"
-            >
-              Hobby
-            </h3>
-            <p className="mt-4 flex items-baseline gap-x-2">
-              <span className="text-5xl font-semibold tracking-tight text-gray-900">
-                $29
-              </span>
-              <span className="text-base text-gray-500">/month</span>
-            </p>
-            <p className="mt-6 text-base/7 text-gray-600">
-              The perfect plan if you&#039;re just getting started with our
-              product.
-            </p>
-            <ul
-              role="list"
-              className="mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                25 products
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Up to 10,000 subscribers
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Advanced analytics
-              </li>
-              <li className="flex gap-x-3">
-                <svg
-                  className="h-6 w-5 flex-none text-indigo-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                24-hour support response time
-              </li>
-            </ul>
-            <a
-              href="#"
-              aria-describedby="tier-hobby"
-              className="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10"
-            >
-              Get started today
-            </a>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default index;
+}
