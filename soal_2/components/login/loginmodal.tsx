@@ -1,7 +1,7 @@
 // components/LoginModal.jsx
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { FormEvent, useState } from "react";
 import {
   XMarkIcon,
@@ -9,6 +9,8 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/outline";
 import { Button } from "../ui/button";
+import DivFadeIn from "../animation/DivFadeIn";
+import DivScaleIn from "../animation/DivScaleIn";
 
 export default function LoginModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,22 +37,12 @@ export default function LoginModal() {
       {/* Modal */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              className="bg-white rounded-xl shadow-xl w-full max-w-md relative"
-            >
+          <DivFadeIn className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 h-screen">
+            <DivScaleIn className="bg-white rounded-xl shadow-xl w-full max-w-md relative">
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full"
+                className="absolute top-4 right-4 p-1 hover:bg-gray-100 hover:cursor-pointer rounded-full"
               >
                 <XMarkIcon className="w-6 h-6 text-gray-600" />
               </button>
@@ -123,8 +115,8 @@ export default function LoginModal() {
                   </div>
                 </form>
               </div>
-            </motion.div>
-          </motion.div>
+            </DivScaleIn>
+          </DivFadeIn>
         )}
       </AnimatePresence>
     </>
