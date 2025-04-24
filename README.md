@@ -26,6 +26,8 @@ is at the folder soal_1, contains the typescript file for each question included
 ## Soal 2
 is at the folder soal_2. first cd into soal_2 folder then npm or yarn install. to run, use npm run dev or yarn dev.
 
+atau bisa diakses di: https://test-kedatech-beryl.vercel.app/
+
 Tech Stack & Alasannya:
 
 - typescript = untuk type checking, deteksi error sejak dini, memfasilitasi developer dengan autocomplete yang sangat membantu apalagi dalam codebase yang besar.
