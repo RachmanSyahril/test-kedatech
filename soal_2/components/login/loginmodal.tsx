@@ -29,7 +29,7 @@ export default function LoginModal() {
       <Button
         onClick={() => setIsOpen(true)}
         variant="outline"
-        className="pa-0"
+        className="pa-0 my-4 md:my-0 w-full md:w-min"
       >
         LOGIN
       </Button>
